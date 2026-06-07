@@ -1,4 +1,4 @@
-package org.example.fleetflow.service;
+package org.example.fleetflow.serviceImpl;
 
 import org.example.fleetflow.DTO.ClientDTO;
 import org.example.fleetflow.Repository.ClientRepository;
@@ -8,16 +8,11 @@ import org.example.fleetflow.model.Client;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.parallel.Execution;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.internal.stubbing.answers.Returns;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Collections;
-
-import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class ClientServiceTest {
 

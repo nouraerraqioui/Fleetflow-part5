@@ -3,9 +3,9 @@ package org.example.fleetflow.Configuration;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 
+import org.example.fleetflow.model.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -33,7 +33,7 @@ public class JwtUtils {
                 .orElse("");
         claims.put("role", role);
 
-        return createToken(claims, user.getUsername());
+        return createToken(claims, user.getEmail());
 
     }
     public boolean isTokenValid(String token, UserDetails userDetails) {
