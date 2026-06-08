@@ -4,8 +4,8 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.example.fleetflow.DTO.ChauffeurDTO;
 import org.example.fleetflow.DTO.LivraisonDTO;
-import org.example.fleetflow.model.Livraison;
 
+import org.example.fleetflow.Interfaces.ChauffeurService;
 import org.example.fleetflow.serviceImpl.ChauffeurServiceImpl;
 import org.example.fleetflow.serviceImpl.LivraisonServiceImpl;
 
@@ -14,17 +14,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/chauffeures")
 
 @AllArgsConstructor
 public class ChauffeurController {
-    private final ChauffeurServiceImpl chauffeurService;
+    private final ChauffeurService chauffeurService;
     private final LivraisonServiceImpl service;
     @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
     @GetMapping

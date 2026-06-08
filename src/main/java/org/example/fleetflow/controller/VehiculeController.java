@@ -6,6 +6,8 @@ import org.example.fleetflow.DTO.VehiculeDTO;
 import org.example.fleetflow.serviceImpl.VehiculeServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +28,9 @@ public class VehiculeController {
 
     @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
     @GetMapping
-    public Page<VehiculeDTO> getAll(Pageable pageable) {
-        return service.getAll(pageable);
+
+    public Page<VehiculeDTO> getAll(@PageableDefault(sort = "id",
+            direction = Sort.Direction.ASC) Pageable pageable) {        return service.getAll(pageable);
     }
 
     @PreAuthorize("hasRole('ADMIN')")

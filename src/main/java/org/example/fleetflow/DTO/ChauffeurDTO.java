@@ -21,5 +21,7 @@ public class ChauffeurDTO implements Serializable {
     private String permisType;
     @NotNull(message = "Le statut disponible est obligatoire")
     private Boolean disponible;
-//    private List<Livraison> livraisons ;
+    private String email;
+    private String username;
+    private String password;
 }

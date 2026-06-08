@@ -1,11 +1,11 @@
 package org.example.fleetflow.serviceImpl;
 
 import org.example.fleetflow.DTO.ClientDTO;
+import org.example.fleetflow.Interfaces.ClientService;
 import org.example.fleetflow.Repository.ClientRepository;
 import org.example.fleetflow.Repository.LivraisonRepository;
 import org.example.fleetflow.mapper.ClientMapper;
 import org.example.fleetflow.model.Client;
-import org.example.fleetflow.service.interfaces.ClientService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

@@ -3,14 +3,17 @@ package org.example.fleetflow.serviceImpl;
 import lombok.AllArgsConstructor;
 import org.example.fleetflow.DTO.ChauffeurDTO;
 import org.example.fleetflow.DTO.LivraisonDTO;
+import org.example.fleetflow.Interfaces.ChauffeurService;
 import org.example.fleetflow.Repository.ChauffeurRepository;
 import org.example.fleetflow.Repository.LivraisonRepository;
 import org.example.fleetflow.mapper.ChauffeurMapper;
 import org.example.fleetflow.mapper.LivraisonMapper;
+
 import org.example.fleetflow.model.Chauffeur;
 import org.example.fleetflow.model.Livraison;
-import org.example.fleetflow.service.interfaces.ChauffeurService;
+import org.example.fleetflow.model.Role;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
 
@@ -24,9 +27,15 @@ public class ChauffeurServiceImpl implements ChauffeurService {
     private final ChauffeurMapper chauffeurMapper;
     private final LivraisonRepository livraisonRepository;
     private final LivraisonMapper livraisonMapper;
+    private final PasswordEncoder passwordEncoder;
+
     @Override
-    public ChauffeurDTO ajouterChauffeur(ChauffeurDTO chauffeurDTO){
+    public ChauffeurDTO ajouterChauffeur(ChauffeurDTO chauffeurDTO) {
         Chauffeur chauffeur = chauffeurMapper.toEntity(chauffeurDTO);
+        chauffeur.setEmail(chauffeurDTO.getEmail());
+        chauffeur.setUsername(chauffeurDTO.getUsername());
+        chauffeur.setPassword(passwordEncoder.encode(chauffeurDTO.getPassword()));
+        chauffeur.setRole(Role.CHAUFFEUR);
         Chauffeur saved = chauffeurRepository.save(chauffeur);
         return chauffeurMapper.toDTO(saved);
     }
